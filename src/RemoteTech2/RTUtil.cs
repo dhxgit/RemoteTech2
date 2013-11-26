@@ -73,6 +73,11 @@ namespace RemoteTech
             return true;
         }
 
+        public static void ScreenMessage(String msg)
+        {
+            ScreenMessages.PostScreenMessage(new ScreenMessage(msg, 4.0f, ScreenMessageStyle.UPPER_LEFT));
+        }
+
         public static String Truncate(this String targ, int len)
         {
             const String suffix = "...";
@@ -139,7 +144,7 @@ namespace RemoteTech
                 s.Append(time.Minutes);
                 s.Append("m");
             }
-            if (time.Seconds > 0 || time.Milliseconds > 0)
+            if (time.Seconds >= 0 || time.Milliseconds >= 0)
             {
                 s.Append((time.Seconds + time.Milliseconds / 1000.0f).ToString("F2"));
                 s.Append("s");
@@ -233,6 +238,14 @@ namespace RemoteTech
             }
         }
 
+        public static void Button(GUIContent text, Action onClick, params GUILayoutOption[] options)
+        {
+            if (GUILayout.Button(text, options))
+            {
+                onClick.Invoke();
+            }
+        }
+
         public static void HorizontalSlider(ref float state, float min, float max, params GUILayoutOption[] options)
         {
             state = GUILayout.HorizontalSlider(state, min, max, options);
@@ -250,6 +263,15 @@ namespace RemoteTech
             {
                 group = group2;
                 onStateChange.Invoke(group2);
+            }
+        }
+
+        public static void StateButton(GUIContent text, int state, int value, Action<int> onStateChange, params GUILayoutOption[] options)
+        {
+            bool result;
+            if ((result = GUILayout.Toggle(state == value, text, GUI.skin.button, options)) != (state == value))
+            {
+                onStateChange.Invoke(result ? value : ~value);
             }
         }
 
