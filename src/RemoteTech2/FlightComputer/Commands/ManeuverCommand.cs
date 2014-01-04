@@ -22,7 +22,7 @@ namespace RemoteTech
                     return "Executing maneuver: " + RemainingDelta.ToString("F2") + "m/s" + Environment.NewLine +
                            "Remaining duration: " + RTUtil.FormatDuration(RemainingTime) + Environment.NewLine + base.Description;
                 else
-                    return "Execute planned maneuver";
+                    return "Execute planned maneuver" + Environment.NewLine + base.Description;
             }
         }
 
@@ -38,7 +38,7 @@ namespace RemoteTech
 
         public override bool Execute(FlightComputer f, FlightCtrlState fcs)
         {
-            if (RemainingDelta > 0.01 * OriginalDelta)
+            if (RemainingDelta > 0)
             {
                 var forward = Node.GetBurnVector(f.Vessel.orbit).normalized;
                 var up = (f.SignalProcessor.Body.position - f.SignalProcessor.Position).normalized;
@@ -49,7 +49,7 @@ namespace RemoteTech
                 RemainingDelta -= (FlightCore.GetTotalThrust(f.Vessel) / f.Vessel.GetTotalMass()) * TimeWarp.deltaTime;
                 return false;
             }
-            f.Enqueue(AttitudeCommand.Off(), true);
+            f.Enqueue(AttitudeCommand.Off(), true, true, true);
             return true;
         }
 

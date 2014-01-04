@@ -36,11 +36,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
-      <HintPath>C:\Steam\SteamApps\common\Kerbal Space Program\KSP_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>C:\Users\Sander\Desktop\KSP Dev\KSP_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>C:\Steam\SteamApps\common\Kerbal Space Program\KSP_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+      <HintPath>C:\Users\Sander\Desktop\KSP Dev\KSP_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -50,7 +50,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
-      <HintPath>C:\Steam\SteamApps\common\Kerbal Space Program\KSP_Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>C:\Users\Sander\Desktop\KSP Dev\KSP_Data\Managed\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -66,7 +66,6 @@
     <Compile Include="FlightComputer\FlightCore.cs" />
     <Compile Include="FlightComputer\Commands\ICommand.cs" />
     <Compile Include="FlightComputer\Commands\TargetCommand.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Modules\MissionControlAntenna.cs" />
     <Compile Include="Modules\ProtoSignalProcessor.cs" />
     <Compile Include="RangeModel\RangeModelStandard.cs" />
@@ -97,6 +96,7 @@
     <Compile Include="AntennaManager.cs" />
     <Compile Include="SimpleTypes\BidirectionalEdge.cs" />
     <Compile Include="SimpleTypes\BinaryHeap.cs" />
+    <Compile Include="SimpleTypes\CachedField.cs" />
     <Compile Include="SimpleTypes\Dish.cs" />
     <Compile Include="SimpleTypes\GUITextureButtonFactory.cs" />
     <Compile Include="SimpleTypes\NetworkRoute.cs" />
@@ -106,16 +106,17 @@
     <Compile Include="UI\AntennaFragment.cs" />
     <Compile Include="UI\AntennaWindow.cs" />
     <Compile Include="UI\AttitudeFragment.cs" />
+    <Compile Include="UI\FocusOverlay.cs" />
+    <Compile Include="UI\FocusFragment.cs" />
     <Compile Include="UI\FlightComputerWindow.cs" />
     <Compile Include="UI\NetworkCone.cs" />
     <Compile Include="UI\EZGUIPointerDisablePatcher.cs" />
     <Compile Include="UI\FlightUIPatcher.cs" />
     <Compile Include="UI\IFragment.cs" />
-    <Compile Include="UI\MapViewFragment.cs" />
+    <Compile Include="UI\FilterOverlay.cs" />
     <Compile Include="UI\NetworkLine.cs" />
     <Compile Include="UI\QueueFragment.cs" />
     <Compile Include="UI\SatelliteFragment.cs" />
-    <Compile Include="UI\SatelliteWindow.cs" />
     <Compile Include="UI\TimeQuadrantPatcher.cs" />
     <Compile Include="VesselSatellite.cs" />
   </ItemGroup>

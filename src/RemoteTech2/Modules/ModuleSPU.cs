@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace RemoteTech
 {
+    [KSPModule("Signal Processor")]
     public class ModuleSPU : PartModule, ISignalProcessor
     {
         public String Name { get { return String.Format("ModuleSPU({0})", VesselName); } }
@@ -138,8 +139,13 @@ namespace RemoteTech
             UIPartActionMenuPatcher.Wrap(vessel, (e, ignore_delay) =>
             {
                 var v = FlightGlobals.ActiveVessel;
+                if (v == null || v.isEVA || RTCore.Instance == null)
+                {
+                    e.Invoke();
+                    return;
+                }
                 var vs = RTCore.Instance.Satellites[v];
-                if (v == null || v.isEVA || vs == null || vs.HasLocalControl)
+                if (vs == null || vs.HasLocalControl)
                 {
                     e.Invoke();
                 }

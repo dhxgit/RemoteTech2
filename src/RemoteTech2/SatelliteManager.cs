@@ -43,7 +43,7 @@ namespace RemoteTech
         /// <returns>Guid key under which the signal processor was registered.</returns>
         public Guid Register(Vessel vessel, ISignalProcessor spu)
         {
-            Guid key = vessel.protoVessel.vesselID;
+            Guid key = vessel.id;
             RTLog.Notify("SatelliteManager: Register({0})", spu);
 
             if (!mLoadedSpuCache.ContainsKey(key))
@@ -144,7 +144,9 @@ namespace RemoteTech
 
         private VesselSatellite For(Guid key)
         {
-            return mSatelliteCache.ContainsKey(key) ? mSatelliteCache[key] : null;
+            VesselSatellite result;
+            if (mSatelliteCache.TryGetValue(key, out result)) return result;
+            return null;
         }
 
         public IEnumerable<ISatellite> FindCommandStations()
